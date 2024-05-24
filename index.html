@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Tables</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/forms"></script>
+  </head>
+  <body class="bg-gray-100 p-6">
+    <div class="container mx-auto">
+      <h1 class="text-2xl font-bold mb-6 text-center">Data Tables</h1>
+
+      <h2 class="text-xl font-semibold mb-4 text-center">Users</h2>
+      <h2 class="text-xl font-semibold mb-4 text-center">
+        <button
+          id="addUserBtn"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded"
+        >
+          新增
+        </button>
+      </h2>
+      <div class="overflow-x-auto mb-6">
+        <table
+          class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md"
+        >
+          <thead class="bg-gray-800 text-white text-center">
+            <tr>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">User ID</th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">
+                Username
+              </th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">Email</th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">
+                Registration Date
+              </th>
+            </tr>
+          </thead>
+          <tbody id="user-table-body" class="text-gray-700 text-center">
+            <!-- Data will be populated here using JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-semibold mb-4 text-center">Login Records</h2>
+      <div class="overflow-x-auto mb-6">
+        <table
+          class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md"
+        >
+          <thead class="bg-gray-800 text-white text-center">
+            <tr>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">
+                Record ID
+              </th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">User ID</th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">
+                Login Time
+              </th>
+            </tr>
+          </thead>
+          <tbody id="login-record-table-body" class="text-gray-700 text-center">
+            <!-- Data will be populated here using JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-semibold mb-4 text-center">Order</h2>
+      <div class="overflow-x-auto mb-6">
+        <table
+          class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md"
+        >
+          <thead class="bg-gray-800 text-white text-center">
+            <tr>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">
+                Order ID
+              </th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">User ID</th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">Game ID</th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">Amount</th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">
+                Order Date
+              </th>
+            </tr>
+          </thead>
+          <tbody id="order-table-body" class="text-gray-700 text-center">
+            <!-- Data will be populated here using JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-semibold mb-4 text-center">Games</h2>
+      <div class="overflow-x-auto mb-6">
+        <table
+          class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md"
+        >
+          <thead class="bg-gray-800 text-white text-center">
+            <tr>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">Game ID</th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">Title</th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">
+                Description
+              </th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">
+                Release Date
+              </th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">
+                Game Type
+              </th>
+            </tr>
+          </thead>
+          <tbody id="game-table-body" class="text-gray-700 text-center">
+            <!-- Data will be populated here using JavaScript -->
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="text-xl font-semibold mb-4 text-center">Game Types</h2>
+      <div class="overflow-x-auto mb-6">
+        <table
+          class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md"
+        >
+          <thead class="bg-gray-800 text-white text-center">
+            <tr>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">
+                Game Type ID
+              </th>
+              <th class="py-3 px-4 uppercase font-semibold text-sm">
+                Type Name
+              </th>
+            </tr>
+          </thead>
+          <tbody id="game-type-table-body" class="text-gray-700 text-center">
+            <!-- Data will be populated here using JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      const newUser = {
+        Username: 'JohnDoe',
+        Email: 'johndoe@example.com',
+        Password: 'examplePassword123', // 請確保你的後端能夠處理這個密碼
+      };
+
+      const newLoginRecord = {
+        UserID: 1,
+        LoginTime: new Date().toISOString(), // 使用當前時間
+      };
+
+      const newPurchaseOrder = {
+        UserID: 1,
+        GameID: 1,
+        Amount: 59.99, // 設定購買金額
+        OrderDate: new Date().toISOString(), // 使用當前時間
+      };
+
+      document.querySelector('#addUserBtn').onclick = () => {
+        // 發送 POST 請求到 API
+        fetch('http://127.0.0.1:8080/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.error) {
+              alert('Error: ' + data.error);
+            } else {
+              alert('User created successfully!');
+              history.go();
+              console.log(data);
+            }
+          });
+
+        fetch('http://127.0.0.1:8080/login-record', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newLoginRecord),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.error) {
+              alert('Error: ' + data.error);
+            } else {
+              alert('login-record created successfully!');
+              history.go();
+              console.log(data);
+            }
+          });
+
+        fetch('http://127.0.0.1:8080/orders', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newPurchaseOrder),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.error) {
+              alert('Error: ' + data.error);
+            } else {
+              alert('order created successfully!');
+              history.go();
+              console.log(data);
+            }
+          });
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Fetch Users
+        fetch('http://127.0.0.1:8080/users')
+          .then((response) => response.json())
+          .then((data) => {
+            const tableBody = document.getElementById('user-table-body');
+            data.forEach((user) => {
+              const row = document.createElement('tr');
+              row.classList.add('border-t', 'hover:bg-gray-100');
+              row.innerHTML = `
+              <td class="py-3 px-4">${user.UserID}</td>
+              <td class="py-3 px-4">${user.Username}</td>
+              <td class="py-3 px-4">${user.Email}</td>
+              <td class="py-3 px-4">${new Date(
+                user.RegistrationDate
+              ).toLocaleDateString()}</td>
+            `;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) => console.error('Error fetching users:', error));
+
+        // Fetch Games
+        fetch('http://127.0.0.1:8080/games')
+          .then((response) => response.json())
+          .then((data) => {
+            const tableBody = document.getElementById('game-table-body');
+            data.forEach((game) => {
+              const row = document.createElement('tr');
+              row.classList.add('border-t', 'hover:bg-gray-100');
+              row.innerHTML = `
+              <td class="py-3 px-4">${game.GameID}</td>
+              <td class="py-3 px-4">${game.Title}</td>
+              <td class="py-3 px-4">${game.Description}</td>
+              <td class="py-3 px-4">${new Date(
+                game.ReleaseDate
+              ).toLocaleDateString()}</td>
+              <td class="py-3 px-4">${game.GameType.TypeName}</td>
+            `;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) => console.error('Error fetching games:', error));
+
+        // Fetch Game Types
+        fetch('http://127.0.0.1:8080/game-type')
+          .then((response) => response.json())
+          .then((data) => {
+            const tableBody = document.getElementById('game-type-table-body');
+            data.forEach((gameType) => {
+              const row = document.createElement('tr');
+              row.classList.add('border-t', 'hover:bg-gray-100');
+              row.innerHTML = `
+              <td class="py-3 px-4">${gameType.GameTypeID}</td>
+              <td class="py-3 px-4">${gameType.TypeName}</td>
+            `;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) => console.error('Error fetching game types:', error));
+
+        // Fetch Login Records
+        fetch('http://127.0.0.1:8080/login-record')
+          .then((response) => response.json())
+          .then((data) => {
+            const tableBody = document.getElementById(
+              'login-record-table-body'
+            );
+            data.forEach((record) => {
+              const row = document.createElement('tr');
+              row.classList.add('border-t', 'hover:bg-gray-100');
+              row.innerHTML = `
+              <td class="py-3 px-4">${record.RecordID}</td>
+              <td class="py-3 px-4">${record.UserID}</td>
+              <td class="py-3 px-4">${new Date(
+                record.LoginTime
+              ).toLocaleString()}</td>
+            `;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) =>
+            console.error('Error fetching login records:', error)
+          );
+
+        fetch('http://127.0.0.1:8080/orders')
+          .then((response) => response.json())
+          .then((data) => {
+            const tableBody = document.getElementById('order-table-body');
+            data.forEach((record) => {
+              const row = document.createElement('tr');
+              row.classList.add('border-t', 'hover:bg-gray-100');
+              row.innerHTML = `
+              <td class="py-3 px-4">${record.OrderID}</td>
+              <td class="py-3 px-4">${record.UserID}</td>
+              <td class="py-3 px-4">${record.GameID}</td>
+              <td class="py-3 px-4">${record.Amount}</td>
+              <td class="py-3 px-4">${new Date(
+                record.OrderDate
+              ).toLocaleString()}</td>
+            `;
+              tableBody.appendChild(row);
+            });
+          })
+          .catch((error) =>
+            console.error('Error fetching login records:', error)
+          );
+      });
+    </script>
+  </body>
+</html>
