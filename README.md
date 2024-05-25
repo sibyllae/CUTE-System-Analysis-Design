@@ -14,7 +14,7 @@
 ### clone
 
 ```bash
-git clone https://github.com/yourusername/yourrepository.git
+git clone https://github.com/sibyllae/CUTE-System-Analysis-Design.git
 cd yourrepository
 ```
 
