@@ -15,7 +15,7 @@
 
 ```bash
 git clone https://github.com/sibyllae/CUTE-System-Analysis-Design.git
-cd yourrepository
+cd CUTE-System-Analysis-Design
 ```
 
 配置資料庫
